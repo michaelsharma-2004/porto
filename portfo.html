@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Stack Portfolio</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #1e3a8a;
+      --bg: #f9fafb;
+      --card-bg: #ffffff;
+      --text-dark: #1f2937;
+      --text-light: #6b7280;
+    }
+
+    body.dark {
+      --primary: #60a5fa;
+      --secondary: #1e40af;
+      --bg: #111827;
+      --card-bg: #1f2937;
+      --text-dark: #f9fafb;
+      --text-light: #d1d5db;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-dark);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      animation: slideDown 1s ease-in-out;
+      position: relative;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    header h1 { margin: 0; font-size: 28px; }
+    header p { margin: 5px 0 0; font-size: 16px; }
+
+    nav {
+      text-align: center;
+      margin: 10px 0 20px;
+    }
+
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--secondary); }
+
+    .theme-toggle {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      background: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--secondary);
+    }
+
+    section {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    section.show { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .projects, .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .card {
+      flex: 1 1 250px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 15px;
+      background: var(--bg);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-buttons {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .filter-buttons button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .filter-buttons button:hover {
+      background: var(--secondary);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-form input, .contact-form textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      transition: border-color 0.3s;
+    }
+
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    .contact-form button {
+      padding: 10px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: var(--secondary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #e5e7eb;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #111827;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Sv.Michael Sarguna Sharma</h1>
+    <p>Full-Stack Developer | React | Node.js</p>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+  </header>
+
+  <nav>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="filter-buttons">
+      <button onclick="filterProjects('all')">All</button>
+      <button onclick="filterProjects('frontend')">Frontend</button>
+      <button onclick="filterProjects('backend')">Backend</button>
+      <button onclick="filterProjects('fullstack')">Full-Stack</button>
+    </div>
+    <div class="projects">
+      <div class="card" data-type="fullstack">
+        <h3>E-commerce App</h3>
+        <p>React, Node.js, Stripe, Full-Stack Project</p>
+      </div>
+      <a href="https://michaelsharma-2004.github.io/booksky/"><div class="card" data-type="frontend">
+        <h3>Booksky Page</h3>
+        <p>HTML, CSS, JS, Frontend Only</p>
+      </div></a>
+      <div class="card" data-type="frontend">
+        <h3>Music Institution</h3>
+        <p>HTML, CSS, Frontend Only</p>
+      </div>
+      <div class="card" data-type="backend">
+        <h3>API Service</h3>
+        <p>Node.js, Express, Backend REST API</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="card"><h3>Frontend</h3><p>React, HTML, CSS, JS</p></div>
+      <div class="card"><h3>Backend</h3><p>Node.js, Python</p></div>
+      <div class="card"><h3>Database</h3><p>MySQL, MongoDB</p></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form class="contact-form" action="https://formspree.io/f/manpqvbv" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Sv.Michael Sarguna Sharma | Built with HTML, CSS, JS
+  </footer>
+
+  <script>
+    // Dark Mode Toggle
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const btn = document.querySelector('.theme-toggle');
+      if (document.body.classList.contains('dark')) {
+        btn.textContent = '☀️ Light Mode';
+      } else {
+        btn.textContent = '🌙 Dark Mode';
+      }
+    }
+
+    // Project Filtering
+    function filterProjects(type) {
+      const projects = document.querySelectorAll(".projects .card");
+      projects.forEach(card => {
+        if (type === 'all' || card.dataset.type === type) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Scroll Animation
+    const sections = document.querySelectorAll("section");
+    window.addEventListener("scroll", () => {
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          section.classList.add("show");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
